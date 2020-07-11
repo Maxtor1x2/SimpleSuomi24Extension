@@ -1,2 +1,10 @@
 # SimpleSuomi24Extension
-Only finds the messages by posting time
+
+LISÄTTY
+Ctrl + Q BadWors listan sanoilla ketjujen suodatus.
+
+POISTETTU
+Viestin merkkaaminen.
+
+PÄIVITETTY
+Page Up ja Page Dn näppäimien toiminta.
