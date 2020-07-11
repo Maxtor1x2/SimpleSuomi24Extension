@@ -2,11 +2,11 @@
 
 ### LISÄTTY
 <p>Ctrl + Q BadWors listan sanoilla ketjujen suodatus.</p>
-<p></p>
+<p><br></p>
 
 ### POISTETTU
 <p>Viestin merkkaaminen.</p>
-<p></p>
+<p><br></p>
 
 ### PÄIVITETTY
 <p>Page Up ja Page Dn näppäimien toiminta.</p>
