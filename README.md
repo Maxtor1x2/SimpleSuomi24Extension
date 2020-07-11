@@ -1,13 +1,10 @@
 # SimpleSuomi24Extension
 
-LISÄTTY
+**LISÄTTY**
+- Ctrl + Q BadWors listan sanoilla ketjujen suodatus.
 
-Ctrl + Q BadWors listan sanoilla ketjujen suodatus.
+**POISTETTU**
+- Viestin merkkaaminen.
 
-POISTETTU
-
-Viestin merkkaaminen.
-
-PÄIVITETTY
-
-Page Up ja Page Dn näppäimien toiminta.
+**PÄIVITETTY**
+- Page Up ja Page Dn näppäimien toiminta.
