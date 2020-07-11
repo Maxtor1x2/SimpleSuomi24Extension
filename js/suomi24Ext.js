@@ -37,19 +37,22 @@ if (event.keyCode===81 && event.ctrlKey ) { BadWords(); }
 };
 
 function BadWords() {
-var BadWord = ["indows", "W10", "in10", "Kyppi"];
-var x = BadWord.length; 
-
-for (j = 0; j < x; j++) {
-for (i = 0; i < 20; i++) {
-let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
-var pos = a1.search(BadWord[j]);
-if (pos > 0) {
-document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
-}
-}
-}
-	
+let ur = window.location.href
+let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
+pos = ur.search(OK);
+if (pos >= 0) {
+	var BadWord = ["indows", "W10", "in10", "Kyppi"];
+	var x = BadWord.length;
+	for (j = 0; j < x; j++) {
+		for (i = 0; i < 20; i++) {
+			let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
+			var pos = a1.search(BadWord[j]);
+			if (pos >= 0) {
+				document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
+				}
+			}
+		}
+	}
 }
 
 
@@ -65,6 +68,7 @@ window.onscroll = function(ev) {
 
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
+	BadWords();
 	let onko = document.getElementsByClassName('TopicViewPage__Description-i7x11t-7 eplqYv');
 	if (onko.length === 0) {
 		function pageScroll(speed) {
@@ -74,7 +78,6 @@ if (document.readyState === "complete" || document.readyState === "interactive")
 		pageScroll(1000);		
     };
     var EkaScroll = 1;
-//				BadWords();
    };
    
    
