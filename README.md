@@ -2,8 +2,8 @@
 <p><br></p>
 
 ### LISÄTTY
-<p>Ctrl + Q BadWors listan sanoilla ketjujen suodatus.</p>
-<p>PDF tulostuksen suodatus.</p>
+<p>Lisätty Ctrl + Q BadWors listan sanoilla ketjujen suodatus.</p>
+<p>Lisätty PDF tulostuksen suodatus, nuoli vasemmalle ja oikealle näppäimiin.</p>
 <p><br></p>
 
 ### POISTETTU
