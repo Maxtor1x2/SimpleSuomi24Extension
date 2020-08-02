@@ -42,12 +42,14 @@ function o(event) {
 if (event.keyCode===81 && event.ctrlKey ) { BadWords(); }
 };
 
+
+// POISTAA LOUKKAAVAT KETJUT
 function BadWords() {
 let ur = window.location.href
 let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
 pos = ur.search(OK);
 if (pos >= 0) {
-	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge"];
+	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks","inux"];
 	var x = BadWord.length;
 	for (j = 0; j < x; j++) {
 		for (i = 0; i < 20; i++) {
@@ -66,12 +68,63 @@ if (pos >= 0) {
 }
 
 
+// POISTAA LOUKKAAVAT VIESTIT
+function TrimViestit() {
+	let ur = window.location.href
+	let OK = "https://keskustelu.suomi24.fi/t/"
+	pos = ur.search(OK);
+	if (pos >= 0) {
+		var PoistetutViestit = 0;
+		var PistetutViittaukset = 0;
+		var BadWord = ["bioksen","mytomaani","winhihhuli","trolli","atajätkä"];
+		let allP = document.querySelectorAll('.CommentListItem__Text-tg4aw6-3').length;
+		let msg = 'Tämä viesti on poistettu, loukkaavan sisältönsä vuoksi!';
+		for (let i = 0; i < allP; i++) {
+			let t = document.getElementsByClassName('CommentListItem__Text-tg4aw6-3')[i].innerText;
+			for (let j = 0; j < BadWord.length; j++) {
+				var n = t.search(BadWord[j]);
+				if (n >= 0) break;
+			}
+			
+			if (n >= 0) {
+				//console.log(t);
+				PoistetutViestit = PoistetutViestit + 1;
+				document.getElementsByClassName('CommentListItem__Text-tg4aw6-3')[i].style.color = 'DarkGrey';
+				document.getElementsByClassName('CommentListItem__Text-tg4aw6-3')[i].innerText = msg;
+			}
+		}
+			
+		msg = 'Tämä viite on poistettu, loukkaavan sisältönsä vuoksi!';
+		allP = document.querySelectorAll('.CommentQuote-sc-1qwad6i-0').length;
+		for (let i = 0; i < allP; i++) {
+			let t = document.getElementsByClassName('CommentQuote-sc-1qwad6i-0')[i].innerText;
+			for (let j = 0; j < BadWord.length; j++) {
+				var n = t.search(BadWord[j]);
+				if (n >= 0) break;
+			}
+				
+			if (n >= 0) {
+				//console.log(t);
+				PistetutViittaukset = PistetutViittaukset + 1;
+				document.getElementsByClassName('CommentQuote-sc-1qwad6i-0')[i].style.color = 'DarkGrey';
+				document.getElementsByClassName('CommentQuote-sc-1qwad6i-0')[i].innerText = msg;
+			}
+		}
+	}
+	msg = "Poistetut viestit: " + PoistetutViestit + "        Poistetut viittaukset: " + PistetutViittaukset;
+	document.getElementsByClassName('ThreadView__AdWrapper-sc-1va8w8b-14 hhkOmi')[0].innerText = msg;
+	document.getElementsByClassName('ThreadView__AdWrapper-sc-1va8w8b-14 hhkOmi')[0].style = "text-align: center;";
+}
+	
+
 window.onscroll = function(ev) {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 		clearTimeout(scrolldelay);
 	if (EkaScroll === 1) {
 		window.scrollTo(0,100);
 		EkaScroll = 0;
+		TrimViestit();
+
 	}
     }
 };
