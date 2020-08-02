@@ -15,18 +15,24 @@ document.onkeydown = function (e) {
   var charCode = (e.charCode) ? e.charCode : e.keyCode;
 
   if (charCode == 37) {
-document.getElementsByClassName('LeftSidePanel__Wrapper-tz92ss-0 esrkdV')[0].style.display = 'block'
-document.getElementsByClassName('Header__StickyWrapper-sc-1lviqz7-6 lhTttk')[0].style.display = 'block'
-document.getElementsByClassName('Header__S24Navbar-sc-1lviqz7-2 fxMXcP promotion-links-nav')[0].style.display = 'block'
-document.getElementsByClassName('Footer__FlexColumnWrapper-jvilwk-1 ehxOeQ footer')[0].style.display = 'block'
-document.getElementsByClassName('ReplyToThreadButton__Button-j4oz46-2 cJzJow ReplyToThreadButton-j4oz46-3 eehJcA')[0].style.display = 'block'
+  let x = document.activeElement.tagName;
+  if ( x != "TEXTAREA" ) { 
+	  document.getElementsByClassName('LeftSidePanel__Wrapper-tz92ss-0 esrkdV')[0].style.display = 'block';
+	  document.getElementsByClassName('Header__StickyWrapper-sc-1lviqz7-6 lhTttk')[0].style.display = 'block';
+	  document.getElementsByClassName('Header__S24Navbar-sc-1lviqz7-2 fxMXcP promotion-links-nav')[0].style.display = 'block';
+	  document.getElementsByClassName('Footer__FlexColumnWrapper-jvilwk-1 ehxOeQ footer')[0].style.display = 'block';
+	  document.getElementsByClassName('ReplyToThreadButton__Button-j4oz46-2 cJzJow ReplyToThreadButton-j4oz46-3 eehJcA')[0].style.display = 'block';
+	}
   }
   else if (charCode == 39) {
-document.getElementsByClassName('LeftSidePanel__Wrapper-tz92ss-0 esrkdV')[0].style.display = 'none'
-document.getElementsByClassName('Header__StickyWrapper-sc-1lviqz7-6 lhTttk')[0].style.display = 'none'
-document.getElementsByClassName('Header__S24Navbar-sc-1lviqz7-2 fxMXcP promotion-links-nav')[0].style.display = 'none'
-document.getElementsByClassName('Footer__FlexColumnWrapper-jvilwk-1 ehxOeQ footer')[0].style.display = 'none'
-document.getElementsByClassName('ReplyToThreadButton__Button-j4oz46-2 cJzJow ReplyToThreadButton-j4oz46-3 eehJcA')[0].style.display = 'none'
+  let x = document.activeElement.tagName;
+  if ( x != "TEXTAREA" ) { 
+	  document.getElementsByClassName('LeftSidePanel__Wrapper-tz92ss-0 esrkdV')[0].style.display = 'none';
+	  document.getElementsByClassName('Header__StickyWrapper-sc-1lviqz7-6 lhTttk')[0].style.display = 'none';
+	  document.getElementsByClassName('Header__S24Navbar-sc-1lviqz7-2 fxMXcP promotion-links-nav')[0].style.display = 'none';
+	  document.getElementsByClassName('Footer__FlexColumnWrapper-jvilwk-1 ehxOeQ footer')[0].style.display = 'none';
+	  document.getElementsByClassName('ReplyToThreadButton__Button-j4oz46-2 cJzJow ReplyToThreadButton-j4oz46-3 eehJcA')[0].style.display = 'none';
+	}
   }
 };
 
@@ -41,12 +47,16 @@ let ur = window.location.href
 let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
 pos = ur.search(OK);
 if (pos >= 0) {
-	var BadWord = ["indows", "W10", "in10", "Kyppi"];
+	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge"];
 	var x = BadWord.length;
 	for (j = 0; j < x; j++) {
 		for (i = 0; i < 20; i++) {
 			let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
 			var pos = a1.search(BadWord[j]);
+			if (pos < 0 ) {
+				let a1 = document.getElementsByClassName("ThreadCard__BodyWrapper-bya6cm-2 gWImKi")[i].innerText;
+				pos = a1.search(BadWord[j]);
+				}
 			if (pos >= 0) {
 				document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
 				}
