@@ -14,6 +14,7 @@ document.onkeydown = function (e) {
   e = e || window.event; 
   var charCode = (e.charCode) ? e.charCode : e.keyCode;
 
+
   if (charCode == 37) {
   let x = document.activeElement.tagName;
   if ( x != "TEXTAREA" ) { 
@@ -47,6 +48,7 @@ if (event.keyCode===81 && event.ctrlKey ) { BadWords(); }
 function BadWords() {
 let ur = window.location.href
 let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
+
 pos = ur.search(OK);
 if (pos >= 0) {
 	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks"];
@@ -62,7 +64,7 @@ if (pos >= 0) {
 				pos = a1.search(BadWord[j]);
 				}
 			if (pos >= 0) {
-				if (document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display != "none" ) {
+				if ( document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display != "none" ) {
 					PoistetutKetjut = PoistetutKetjut + 1;
 					document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
 					}
@@ -73,8 +75,11 @@ if (pos >= 0) {
 		}
 	}
 let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
-document.getElementsByClassName('TopicViewPage__AdWrapper-i7x11t-5 aOOPO')[0].innerText = msg;
-document.getElementsByClassName('TopicViewPage__AdWrapper-i7x11t-5 aOOPO')[0].style = "text-align: center; margin-top: 2px;";
+var para = document.createElement("div");
+var t = document.createTextNode(msg);
+para.appendChild(t);
+para.style = "margin-top: 12px; color: #A52A2A";
+document.getElementsByClassName('TopicViewPage__HeaderDescription-i7x11t-9 biaFYM')[0].appendChild(para); 
 }
 
 
@@ -121,9 +126,9 @@ function TrimViestit() {
 			}
 		}
 	}
-	msg = "Poistetut viestit: " + PoistetutViestit + "        Poistetut viittaukset: " + PistetutViittaukset;
-	document.getElementsByClassName('ThreadView__AdWrapper-sc-1va8w8b-14 hhkOmi')[0].innerText = msg;
-	document.getElementsByClassName('ThreadView__AdWrapper-sc-1va8w8b-14 hhkOmi')[0].style = "text-align: center;";
+	let msg = "Poistetut viestit: " + PoistetutViestit + "        Poistetut viittaukset: " + PistetutViittaukset;
+	document.getElementsByClassName('AdLivewrapped__AdWrapper-sc-1elv0vs-0 dbuSuM')[0].innerText = msg;
+	document.getElementsByClassName('AdLivewrapped__AdWrapper-sc-1elv0vs-0 dbuSuM')[0].style = "text-align: center;";
 }
 	
 
