@@ -51,6 +51,7 @@ let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
 
 pos = ur.search(OK);
 if (pos >= 0) {
+//alert(pos);
 	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks"];
 	var x = BadWord.length;
 	var PoistetutKetjut = 0;
@@ -74,12 +75,22 @@ if (pos >= 0) {
 			}
 		}
 	}
+//let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
+//var para = document.createElement("div");
+//var t = document.createTextNode(msg);
+//para.appendChild(t);
+//para.style = "margin-top: 12px; color: #A52A2A";
+//document.getElementsByClassName('TopicViewPage__HeaderDescription-i7x11t-9 biaFYM')[0].appendChild(para); 
+
 let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
-var para = document.createElement("div");
-var t = document.createTextNode(msg);
-para.appendChild(t);
-para.style = "margin-top: 12px; color: #A52A2A";
-document.getElementsByClassName('TopicViewPage__HeaderDescription-i7x11t-9 biaFYM')[0].appendChild(para); 
+var first = document.createElement("div");
+var text = document.createTextNode(msg);
+first.appendChild(text);
+first.style = "margin-top: 2px; color: #A52A2A; text-align: center;";
+if (document.querySelector(".TopicViewPage__HeaderDescription-i7x11t-9 biaFYM")) {
+	document.querySelector(".TopicViewPage__HeaderDescription-i7x11t-9 biaFYM").appendChild(first);
+}
+
 }
 
 
