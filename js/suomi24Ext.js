@@ -37,60 +37,45 @@ document.onkeydown = function (e) {
   }
 };
 
-document.addEventListener("keyup", o);
 
-function o(event) {
-if (event.keyCode===81 && event.ctrlKey ) { BadWords(); }
-};
+//document.addEventListener("keyup", o);
+//function o(event) {
+//if (event.keyCode===81 && event.ctrlKey ) { BadWords(); }
+//};
 
 
 // POISTAA LOUKKAAVAT KETJUT
-function BadWords() {
-let ur = window.location.href
-let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
+function TrimKetjut() {
+	let ur = window.location.href
+	let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
 
-pos = ur.search(OK);
-if (pos >= 0) {
-//alert(pos);
-	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks"];
-	var x = BadWord.length;
-	var PoistetutKetjut = 0;
+	pos = ur.search(OK);
+	if (pos >= 0) {
+		var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks"];
+		var x = BadWord.length;
+		var PoistetutKetjut = 0;
 
-	for (j = 0; j < x; j++) {
-		for (i = 0; i < 20; i++) {
-			let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
-			var pos = a1.search(BadWord[j]);
-			if (pos < 0 ) {
-				let a1 = document.getElementsByClassName("ThreadCard__BodyWrapper-bya6cm-2 gWImKi")[i].innerText;
-				pos = a1.search(BadWord[j]);
-				}
-			if (pos >= 0) {
-				if ( document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display != "none" ) {
-					PoistetutKetjut = PoistetutKetjut + 1;
-					document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
-					}
-					
-
+		for (j = 0; j < x; j++) {
+			for (i = 0; i < 20; i++) {
+				let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
+				var pos = a1.search(BadWord[j]);
+				if (pos < 0 ) {
+					let a1 = document.getElementsByClassName("ThreadCard__BodyWrapper-bya6cm-2 gWImKi")[i].innerText;
+					pos = a1.search(BadWord[j]); }
+				if (pos >= 0) {
+					if ( document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display != "none" ) {
+						PoistetutKetjut = PoistetutKetjut + 1;
+						document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none"; }
 				}
 			}
 		}
+		let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
+		var para = document.createElement("div");
+		var t = document.createTextNode(msg);
+		para.appendChild(t);
+		para.style = "margin-top: 12px; color: #A52A2A";
+		document.getElementsByClassName('TopicViewPage__HeaderDescription-i7x11t-9 biaFYM')[0].appendChild(para);
 	}
-//let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
-//var para = document.createElement("div");
-//var t = document.createTextNode(msg);
-//para.appendChild(t);
-//para.style = "margin-top: 12px; color: #A52A2A";
-//document.getElementsByClassName('TopicViewPage__HeaderDescription-i7x11t-9 biaFYM')[0].appendChild(para); 
-
-let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
-var first = document.createElement("div");
-var text = document.createTextNode(msg);
-first.appendChild(text);
-first.style = "margin-top: 2px; color: #A52A2A; text-align: center;";
-if (document.querySelector(".TopicViewPage__HeaderDescription-i7x11t-9 biaFYM")) {
-	document.querySelector(".TopicViewPage__HeaderDescription-i7x11t-9 biaFYM").appendChild(first);
-}
-
 }
 
 
@@ -113,7 +98,6 @@ function TrimViestit() {
 			}
 			
 			if (n >= 0) {
-				//console.log(t);
 				PoistetutViestit = PoistetutViestit + 1;
 				document.getElementsByClassName('CommentListItem__Text-tg4aw6-3')[i].style.color = 'DarkGrey';
 				document.getElementsByClassName('CommentListItem__Text-tg4aw6-3')[i].innerText = msg;
@@ -130,7 +114,6 @@ function TrimViestit() {
 			}
 				
 			if (n >= 0) {
-				//console.log(t);
 				PistetutViittaukset = PistetutViittaukset + 1;
 				document.getElementsByClassName('CommentQuote-sc-1qwad6i-0')[i].style.color = 'DarkGrey';
 				document.getElementsByClassName('CommentQuote-sc-1qwad6i-0')[i].innerText = msg;
@@ -143,37 +126,45 @@ function TrimViestit() {
 }
 	
 
-window.onscroll = function(ev) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-		clearTimeout(scrolldelay);
-	if (EkaScroll === 1) {
-		window.scrollTo(0,100);
-		EkaScroll = 0;
-		TrimViestit();
 
+
+
+window.onscroll = function(ev) {
+	if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		clearTimeout(scrolldelay);
+		if (EkaScroll === 1) {
+			window.scrollTo(0,100);
+			EkaScroll = 0;
+			TrimViestit();
+		}
 	}
-    }
 };
 
 
+
+
+
 if (document.readyState === "complete" || document.readyState === "interactive") {
-	BadWords();
+	TrimKetjut();
 	let onko = document.getElementsByClassName('TopicViewPage__Description-i7x11t-7 eplqYv');
 	if (onko.length === 0) {
 		function pageScroll(speed) {
 			window.scrollBy(0,50);
-			scrolldelay = setTimeout(pageScroll,speed);	
+			scrolldelay = setTimeout(pageScroll,speed);
 		};
-		pageScroll(1000);		
-    };
-    var EkaScroll = 1;
-   };
+		pageScroll(1000);
+	};
+	var EkaScroll = 1;
+};
    
+
+
+
    
 let readMoreButt = document.querySelector("button.ThreadBody__ReadMoreButton-vlae9c-2");
-    if (readMoreButt) {
-		readMoreButt.click();
-	}
+if (readMoreButt) {
+	readMoreButt.click();
+}
 
 
 
@@ -181,11 +172,11 @@ let readMoreButt = document.querySelector("button.ThreadBody__ReadMoreButton-vla
 /** Nämä "class" nimet saattavat muuttua päivityksissä **/
 /** <time class="ThreadUser__Timestamp-sugcdk-1 Wmdss">Eilen 21:51</time> **/
 let timeMaker = container => {
-    let tEl = container.querySelector(".ThreadUser__Timestamp-sugcdk-1");
-    if (!tEl) return new Date(0);
-    let tStr = tEl.innerText.trim().toLocaleLowerCase();
-    let year, month, day, hour, minute;
-    let currDate = new Date();
+	let tEl = container.querySelector(".ThreadUser__Timestamp-sugcdk-1");
+	if (!tEl) return new Date(0);
+	let tStr = tEl.innerText.trim().toLocaleLowerCase();
+	let year, month, day, hour, minute;
+	let currDate = new Date();
     if (tStr.substring(0, 6) === "tänään") {
         year = currDate.getFullYear();
         month = currDate.getMonth();
