@@ -49,8 +49,10 @@ let ur = window.location.href
 let OK = "https://keskustelu.suomi24.fi/tiede-ja-teknologia/tietotekniikka"
 pos = ur.search(OK);
 if (pos >= 0) {
-	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks","inux"];
+	var BadWord = ["indows", "W10", "in10", "Kyppi", "Winhihhulit", "Winvajakit", "win-trolli", "Winvajakki", "inkura", "ainoks", "öllöaalto", "inkura", "buntu","inuksia","dge","w10","inuks"];
 	var x = BadWord.length;
+	var PoistetutKetjut = 0;
+
 	for (j = 0; j < x; j++) {
 		for (i = 0; i < 20; i++) {
 			let a1 = document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].innerText;
@@ -60,11 +62,19 @@ if (pos >= 0) {
 				pos = a1.search(BadWord[j]);
 				}
 			if (pos >= 0) {
-				document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
+				if (document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display != "none" ) {
+					PoistetutKetjut = PoistetutKetjut + 1;
+					document.getElementsByClassName("ThreadCard__CardWrapper-bya6cm-1 hdaYsh")[i].style.display = "none";
+					}
+					
+
 				}
 			}
 		}
 	}
+let msg = "Loukkaavan sisältönsä vuoksi poistettu: " + PoistetutKetjut + " ketju(a).";
+document.getElementsByClassName('TopicViewPage__AdWrapper-i7x11t-5 aOOPO')[0].innerText = msg;
+document.getElementsByClassName('TopicViewPage__AdWrapper-i7x11t-5 aOOPO')[0].style = "text-align: center; margin-top: 2px;";
 }
 
 
@@ -76,7 +86,7 @@ function TrimViestit() {
 	if (pos >= 0) {
 		var PoistetutViestit = 0;
 		var PistetutViittaukset = 0;
-		var BadWord = ["bioksen","mytomaani","winhihhuli","trolli","atajätkä"];
+		var BadWord = ["bioksen","mytomaani","winhihhuli","trolli","atajätkä","homo","Pata"];
 		let allP = document.querySelectorAll('.CommentListItem__Text-tg4aw6-3').length;
 		let msg = 'Tämä viesti on poistettu, loukkaavan sisältönsä vuoksi!';
 		for (let i = 0; i < allP; i++) {
